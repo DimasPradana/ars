@@ -5,16 +5,16 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
 
-             
+
 
             <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
                 <a href="{{ url('/') }}">
                     <i class="fa fa-wrench"></i>
-                    <span class="title">@lang('quickadmin.qa_dashboard')</span>
+                    <span class="title">@lang('quickadmin.qa_dashboard') - {{ \Auth::user()->name }}</span>
                 </a>
             </li>
 
-            
+
             @can('user_management_access')
             <li class="treeview">
                 <a href="#">
@@ -25,7 +25,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                
+
                 @can('role_access')
                 <li class="{{ $request->segment(2) == 'roles' ? 'active active-sub' : '' }}">
                         <a href="{{ route('admin.roles.index') }}">
@@ -57,7 +57,7 @@
                 </a>
             </li>
             @endcan
-            
+
             @can('file_access')
             <li class="{{ $request->segment(2) == 'files' ? 'active' : '' }}">
                 <a href="{{ route('admin.files.index') }}">
